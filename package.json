@@ -1,0 +1,30 @@
+{
+  "name": "yyl-print",
+  "version": "0.1.0",
+  "description": "cmd print lib for yyl",
+  "main": "index.js",
+  "engines": {
+    "node": ">= 8.0.0"
+  },
+  "scripts": {
+    "test": "jest ./test/test.js",
+    "check": "node ./test/run.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jackness1208/yyl-print.git"
+  },
+  "keywords": [
+    "yyl",
+    "print"
+  ],
+  "author": "jackness",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jackness1208/yyl-print/issues"
+  },
+  "homepage": "https://github.com/jackness1208/yyl-print#readme",
+  "devDependencies": {
+    "jest": "^23.6.0"
+  }
+}
