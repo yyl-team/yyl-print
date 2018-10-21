@@ -2,7 +2,7 @@ const print = require('../index.js');
 
 jest.setTimeout(30000);
 
-test('print.borderBox(str, op)', async () => {
+test('print.borderBox(str, op)', () => {
   const checkMap = [{
     str: '123456789',
     op: {
@@ -156,7 +156,24 @@ test('print.borderBox(str, op)', async () => {
 
   for (let i = 0, len = checkMap.length; i < len; i++) {
     let param = checkMap[i];
-    let r = await print.borderBox(param.str, param.op);
+    let r = print.borderBox(param.str, param.op);
     expect(r).toEqual(param.result);
   }
+});
+
+test('print.log', () => {
+  print.log.silent(true);
+  const checkMap = [{
+    argv: [123, undefined, 'hehe'],
+    result: [
+      ' info    123',
+      '         undefined',
+      '         hehe'
+    ]
+  }];
+
+  checkMap.forEach((param) => {
+    const r = print.log.info(...param.argv);
+    expect(r).toEqual(param.result);
+  });
 });
