@@ -13,4 +13,13 @@ const print = require('../index.js');
 //   console.log(r.join('\n'));
 // });
 
-print.log.info(123, undefined, 'hehe');
+let padding = 0;
+let inKey = setInterval(() => {
+  padding++;
+  if (padding < 10) {
+    print.log.info(123, undefined, 'hehe', padding);
+  } else {
+    clearInterval(inKey);
+    print.log.success('run finished');
+  }
+}, 1000);
