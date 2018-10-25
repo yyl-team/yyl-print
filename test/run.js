@@ -13,13 +13,13 @@ const print = require('../index.js');
 //   console.log(r.join('\n'));
 // });
 
-let padding = 0;
-let inKey = setInterval(() => {
-  padding++;
-  if (padding < 10) {
-    print.log.info(123, undefined, 'hehe', padding);
-  } else {
-    clearInterval(inKey);
-    print.log.success('run finished');
-  }
-}, 1000);
+print.log.info([
+  1234567890,
+  1234567890,
+  1234567890,
+  1234567890,
+  1234567890,
+  1234567890,
+  1234567890,
+  1234567890
+].join(''));

@@ -156,24 +156,64 @@ test('print.borderBox(str, op)', () => {
 
   for (let i = 0, len = checkMap.length; i < len; i++) {
     let param = checkMap[i];
-    let r = print.borderBox(param.str, param.op);
+    let r = print.borderBox(param.str, param.op).map((str) => {
+      return print.fn.decolor(str);
+    });
     expect(r).toEqual(param.result);
   }
 });
 
-test('print.log', () => {
+test('print.log.info()', () => {
   print.log.silent(true);
+
+  // init test
+  print.log.init({
+    type: {
+      test: {
+        name: 'TEST',
+        color: 'white',
+        bgColor: 'bgCyan'
+      }
+    }
+  });
+
+  expect(print.log.test('hello world').map(str => print.fn.decolor(str))).toEqual([' TEST  hello world']);
+
+
+  // useage test
   const checkMap = [{
     argv: [123, undefined, 'hehe'],
     result: [
-      ' info    123',
-      '         undefined',
-      '         hehe'
+      ' INFO  123',
+      '       undefined',
+      '       hehe'
+    ]
+  }, {
+    argv: [
+      [
+        1234567890,
+        1234567890,
+        1234567890,
+        1234567890,
+        1234567890,
+        1234567890,
+        1234567890,
+        1234567890
+      ].join(''),
+      'hello'
+    ],
+    result: [
+      ' INFO  123456789012345678901234567890123456789012345678901234567890123456789012',
+      '       34567890',
+      '       hello'
     ]
   }];
 
   checkMap.forEach((param) => {
-    const r = print.log.info(...param.argv);
+    print.log.silent(true);
+    const r = print.log.info(...param.argv).map((str) => {
+      return print.fn.decolor(str);
+    });
     expect(r).toEqual(param.result);
   });
 });
