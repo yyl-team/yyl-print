@@ -25,6 +25,8 @@
   },
   "homepage": "https://github.com/jackness1208/yyl-print#readme",
   "devDependencies": {
-    "jest": "^23.6.0"
-  }
+    "jest": "^23.6.0",
+    "yyl-fs": "^0.1.1"
+  },
+  "dependencies": {}
 }

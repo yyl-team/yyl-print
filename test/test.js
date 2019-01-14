@@ -1,12 +1,184 @@
 const print = require('../index.js');
+const path = require('path');
+const fs = require('fs');
+const extFs = require('yyl-fs');
 
 jest.setTimeout(30000);
+const FRAG_PATH = path.join(__dirname, './__frag');
+const fn = {
+  frag: {
+    async build() {
+      if (fs.existsSync(FRAG_PATH)) {
+        await extFs.removeFiles(FRAG_PATH);
+      } else {
+        await extFs.mkdirSync(FRAG_PATH);
+      }
+    },
+    async destory() {
+      if (fs.existsSync(FRAG_PATH)) {
+        await extFs.removeFiles(FRAG_PATH, true);
+      }
+    }
+  },
+  async buildFile(iPath) {
+    const dirname = path.dirname(iPath);
+    if (!fs.existsSync(dirname)) {
+      await extFs.mkdirSync(dirname);
+    }
+    fs.writeFileSync(iPath, '');
+  }
+};
+
+test('print.help(op)', () => {
+  const checkMap = [{
+    op: {
+      silent: true,
+      usage: 'yyl-print',
+      command: {
+        'init': 'init files',
+        'default': 'default system'
+      },
+      options: {
+        '-v, --version': 'show version',
+        '-p, --path': 'path to plugin'
+      }
+    },
+    result: [
+      '',
+      '  Usage: yyl-print <command>',
+      '',
+      '  Options:',
+      '    -v, --version  show version',
+      '    -p, --path     path to plugin',
+      '',
+      ''
+    ]
+  }];
+
+  checkMap.forEach((item) => {
+    const r = print.help(item.op);
+    expect(print.fn.decolor(r)).toEqual(item.result);
+  });
+});
+
+test('print.buildTree({frontPath, path})', async () => {
+  await fn.frag.build();
+
+  await fn.buildFile(path.join(FRAG_PATH, 'js/index.js'));
+  await fn.buildFile(path.join(FRAG_PATH, 'css/index.css'));
+  await fn.buildFile(path.join(FRAG_PATH, 'html/index.html'));
+  await fn.buildFile(path.join(FRAG_PATH, '.eslintrc'));
+  await fn.buildFile(path.join(FRAG_PATH, 'yyl.config.js'));
+  await fn.buildFile(path.join(FRAG_PATH, '.sass-cache/cache.js'));
+
+  const checkMap = [{
+    op: {
+      silent: true,
+      frontPath: '__frag',
+      path: FRAG_PATH
+    },
+    result: [
+      '',
+      '  __frag',
+      '  |~ css',
+      '  |  `- index.css',
+      '  |~ html',
+      '  |  `- index.html',
+      '  |~ js',
+      '  |  `- index.js',
+      '  |- yyl.config.js',
+      '  |- .eslintrc',
+      '  `~ .sass-cache',
+      '     `- cache.js',
+      ''
+    ]
+  }, {
+    op: {
+      silent: true,
+      frontPath: '__frag',
+      path: FRAG_PATH,
+      dirNoDeep: ['css']
+    },
+    result: [
+      '',
+      '  __frag',
+      '  |+ css',
+      '  |~ html',
+      '  |  `- index.html',
+      '  |~ js',
+      '  |  `- index.js',
+      '  |- yyl.config.js',
+      '  |- .eslintrc',
+      '  `~ .sass-cache',
+      '     `- cache.js',
+      ''
+    ]
+  }, {
+    op: {
+      silent: true,
+      frontPath: '__frag',
+      path: FRAG_PATH,
+      dirFilter: /\.sass-cache/
+    },
+    result: [
+      '',
+      '  __frag',
+      '  |~ css',
+      '  |  `- index.css',
+      '  |~ html',
+      '  |  `- index.html',
+      '  |~ js',
+      '  |  `- index.js',
+      '  |- yyl.config.js',
+      '  `- .eslintrc',
+      ''
+    ]
+  }, {
+    op: {
+      silent: true,
+      path: 'yyl-print',
+      dirList: [
+        'yyl-print/images/1.png',
+        'yyl-print/js/1.js',
+        'yyl-print/js/lib/lib.js',
+        'yyl-print/css/1.css',
+        'yyl-print/html/1.html'
+      ]
+    },
+    result: [
+      '',
+      '  yyl-print',
+      '  |~ css',
+      '  |  `- 1.css',
+      '  |~ html',
+      '  |  `- 1.html',
+      '  |~ images',
+      '  |  `- 1.png',
+      '  `~ js',
+      '     |~ lib',
+      '     |  `- lib.js',
+      '     `- 1.js',
+      ''
+    ]
+  }];
+
+  checkMap.forEach((item) => {
+    expect(
+      print.fn.decolor(
+        print.buildTree(item.op)
+      )
+    ).toEqual(item.result);
+  });
+
+  await fn.frag.destory();
+});
 
 test('print.borderBox(str, op)', () => {
   const checkMap = [{
     str: '123456789',
     op: {
-      color: false
+      color: false,
+      silent: true
     },
     result: [
       '',
@@ -18,6 +190,7 @@ test('print.borderBox(str, op)', () => {
   }, {
     str: ['123456789', '123'],
     op: {
+      silent: true,
       color: false
     },
     result: [
@@ -31,6 +204,7 @@ test('print.borderBox(str, op)', () => {
   }, {
     str: ['123456789', '123'],
     op: {
+      silent: true,
       color: false,
       align: 'left'
     },
@@ -45,6 +219,7 @@ test('print.borderBox(str, op)', () => {
   }, {
     str: ['123456789', '123'],
     op: {
+      silent: true,
       color: false,
       align: 'right'
     },
@@ -59,6 +234,7 @@ test('print.borderBox(str, op)', () => {
   }, {
     str: ['123456789', '123'],
     op: {
+      silent: true,
       color: false,
       align: 'center'
     },
@@ -73,6 +249,7 @@ test('print.borderBox(str, op)', () => {
   }, {
     str: ['123456789', '12'],
     op: {
+      silent: true,
       color: false,
       align: 'center'
     },
@@ -87,6 +264,7 @@ test('print.borderBox(str, op)', () => {
   }, {
     str: ['1234567890'],
     op: {
+      silent: true,
       color: false,
       align: 'center',
       maxSize: 8
@@ -102,6 +280,7 @@ test('print.borderBox(str, op)', () => {
   }, {
     str: ['1234567890'],
     op: {
+      silent: true,
       color: false,
       align: 'center',
       maxSize: 800
@@ -116,6 +295,7 @@ test('print.borderBox(str, op)', () => {
   }, {
     str: ['1234567890'],
     op: {
+      silent: true,
       color: false,
       padding: 2
     },
@@ -141,6 +321,7 @@ test('print.borderBox(str, op)', () => {
         '1234567890'
       ].join(''),
       op: {
+        silent: true,
         color: false
       },
       result: [
