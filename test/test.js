@@ -2,6 +2,7 @@ const print = require('../index.js');
 const path = require('path');
 const fs = require('fs');
 const extFs = require('yyl-fs');
+const chalk = require('chalk');
 
 jest.setTimeout(30000);
 const FRAG_PATH = path.join(__dirname, './__frag');
@@ -358,16 +359,27 @@ test('print.log.info()', () => {
     }
   });
 
-  expect(print.log.test('hello world').map(str => print.fn.decolor(str))).toEqual([' TEST  hello world']);
+  // init test
+  print.log.init({
+    type: {
+      hello: {
+        name: 'HELO',
+        color: chalk.yellow.bold.bgWhite
+      }
+    }
+  });
+
+  expect(print.log.test('hello world')).toEqual([`${chalk.white.bgCyan(' TEST ')} hello world`]);
+  expect(print.log.hello('hello world')).toEqual([`${chalk.yellow.bold.bgWhite(' HELO ')} hello world`]);
 
 
   // useage test
   const checkMap = [{
     argv: [123, undefined, 'hehe'],
     result: [
-      ' INFO  123',
-      '       undefined',
-      '       hehe'
+      `${chalk.white.bgCyan(' TEST ')} 123`,
+      `${chalk.white.bgCyan('      ')} undefined`,
+      `${chalk.white.bgCyan('      ')} hehe`
     ]
   }, {
     argv: [
@@ -384,17 +396,34 @@ test('print.log.info()', () => {
       'hello'
     ],
     result: [
-      ' INFO  123456789012345678901234567890123456789012345678901234567890123456789012',
-      '       34567890',
-      '       hello'
+      `${chalk.white.bgCyan(' TEST ')} 123456789012345678901234567890123456789012345678901234567890123456789012`,
+      `${chalk.white.bgCyan('      ')} 34567890`,
+      `${chalk.white.bgCyan('      ')} hello`
+    ]
+  }, {
+    argv: [
+      [
+        1234567890,
+        1234567890,
+        1234567890,
+        1234567890,
+        1234567890,
+        1234567890,
+        1234567890,
+        chalk.red(1234567890)
+      ].join(''),
+      'hello'
+    ],
+    result: [
+      `${chalk.white.bgCyan(' TEST ')} 1234567890123456789012345678901234567890123456789012345678901234567890${chalk.red('12')}`,
+      `${chalk.white.bgCyan('      ')} ${chalk.red('34567890')}`,
+      `${chalk.white.bgCyan('      ')} hello`
     ]
   }];
 
   checkMap.forEach((param) => {
     print.log.silent(true);
-    const r = print.log.info(...param.argv).map((str) => {
-      return print.fn.decolor(str);
-    });
+    const r = print.log.test(...param.argv);
     expect(r).toEqual(param.result);
   });
 });
