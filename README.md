@@ -101,3 +101,40 @@ print.log.info(...argv);
 ## print.log.cmd(...argv)
 同上
 
+## print.help(op)
+```
+/**
+ * 帮助文本输出
+ * @param  {Object} op 设置参数
+ *                     - usage   [string] 句柄名称
+ *                     - commands [object] 操作方法列表 {key: val} 形式
+ *                     - options  [object] 操作方法列表 {key: val} 形式
+ * @return {Void}
+ */
+print.help(op)
+```
+
+## print.buildTree()
+```
+/**
+ * 目录输出
+ * @param  {String}  op.path       当前目录
+ * @param  {Array}   op.dirList    虚拟目录列表
+ * @param  {String}  op.frontPath  目录前缀
+ * @param  {Number}  op.frontSpace 目录树前置空格数目
+ * @param  {RegExp}  op.dirFilter  目录过滤
+ * @param  {Array}   op.dirNoDeep  不展开的文件夹列表
+ * @param  {Boolean} op.silent     不打印
+ * @return {Array}   logs          需要打印的 字符串
+ */
+print.buildTree(op)
+```
+
+## print.cleanScreen()
+```
+/**
+ * 清除当前cmd 内容
+ * @return {Void}
+ */
+print.cleanScreen();
+```
