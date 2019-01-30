@@ -1,4 +1,7 @@
 # 版本记录
+## 0.5.0 (2019-01-30)
+* [ADD] 新增 `print.log.init({ abridgeIgnores })` `abridgeIgnores` 变量 logLevel = 1 时 log 折叠的 排除名单
+
 ## 0.4.0 (2019-01-28)
 * [ADD] 新增 `print.cleanScreen()`
 

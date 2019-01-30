@@ -20,11 +20,12 @@ print.borderBox(ctx, op);
 /**
  * log 初始化
  * @param  {Object} op 配置参数
- * @param  {Object} op.type     log 类型
- * @param  {Number} op.maxSize  标题最大字数限制
- * @param  {Number} op.silent   是否禁止自动打印
- * @param  {Number} op.logLevel 日志级别 0|1|2
- * @param  {Object} op.keyword  高亮关键字配置
+ * @param  {Object} op.type              log 类型
+ * @param  {Number} op.maxSize           标题最大字数限制
+ * @param  {Number} op.silent            是否禁止自动打印
+ * @param  {Number} op.logLevel          日志级别 0|1|2
+ * @param  {Object} op.keyword           高亮关键字配置
+ * @param  {Array}  op.abridgeIgnores    代码缩略的白名单
  */
 print.log.init(op);
 ```

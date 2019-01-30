@@ -7,3 +7,12 @@ print.log.init({
     concat: {name: 'Concat', color: 'cyan', bgColor: 'bgBlue'}
   }
 });
+
+print.log.setLogLevel(1);
+
+print.log.info('111');
+print.log.info('222');
+print.log.info('333');
+print.log.success('1');
+print.log.success('2');
+print.log.success('3');
