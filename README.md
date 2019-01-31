@@ -117,7 +117,7 @@ print.log.info(...argv);
 print.help(op)
 ```
 
-## print.buildTree()
+## print.buildTree(op)
 ```
 /**
  * 目录输出
@@ -140,4 +140,157 @@ print.buildTree(op)
  * @return {Void}
  */
 print.cleanScreen();
+```
+
+## print.fn.cost
+计时用类
+```
+/**
+ * 开始计时
+ * @return {Date} now 当前时间
+ */
+print.fn.cost.start()
+```
+
+```
+/**
+ * 结束计时
+ * @return {Date} now 当前时间
+ */
+print.fn.cost.end()
+```
+
+```
+/**
+ * 将耗时 格式化成 'x min x s x ms' 形式
+ * @return {String} now 格式化后字符串
+ */
+print.fn.cost.format()
+```
+## print.fn.timeFormat()
+```
+/**
+ * 将传入时间|当前时间格式化成 `00:00:00` 的形式
+ * @param  {undefined|Date} 传入时间
+ * @return {String}         格式化后字符串
+ */
+print.fn.timeFormat(d);
+```
+
+## print.fn.replaceKeyword(str, keyword, result)
+```
+/**
+ * @param  {String} str     输入的文章
+ * @param  {String} keyword 关键字
+ * @param  {String} result  期望替换成的结果
+ * @return {String} output  替换后的字符串
+ */
+print.fn.replacekeyword(str, keyword, result)
+```
+
+## print.fn.formatUrl(url)
+```
+/**
+ * a\b\c => a/b/c
+ * @param  {String} url 需要格式化的地址
+ * @return {String} r   格式化后地址
+ */
+print.fn.formatUrl(url)
+```
+
+## print.fn.isArray(ctx)
+```
+/**
+ * 判断是否 array 类型
+ * @param  {Anything} ctx
+ * @return {Boolean}  r
+ */
+print.fn.isArray(ctx)
+```
+
+## print.fn.buildChar(char, num)
+```
+/**
+ * 生成 num 个 char 字符
+ * @param  {String} char
+ * @param  {Number} num
+ * @return {String} r
+ */
+print.fn.buildChar(char, num)
+```
+
+## print.fn.makeSpace(num)
+```
+/**
+ * 生成 num 个 空格
+ * @param  {Number} num
+ * @return {String} r
+ */
+print.fn.makeSpace(num)
+```
+
+## print.fn.decolor(ctx)
+```
+/**
+ * 去掉字符串 颜色
+ * @param  {String} ctx
+ * @return {String} r   去色后结果
+ */
+print.fn.decolor(ctx)
+```
+
+## print.fn.strAlign(str, op)
+```
+/**
+ * 格式化文字(居中, 左, 右)
+ * @param  {String} str
+ * @param  {Object} op       配置
+ * @param  {Number} op.size  所占字符数
+ * @param  {Number} op.align left|center|right
+ * @return {Number} r        输出结果
+ */
+print.fn.strAlign(str, op)
+```
+
+## print.fn.getStrSize(str)
+```
+/**
+ * 获取带颜色的字符串长度
+ * @param  {String} str
+ * @return {Number} length
+ */
+print.fn.getStrSize(str)
+```
+
+## print.fn.substr(str, begin, len)
+```
+/**
+ * 截取带颜色文字的长度
+ * @param  {String} str   带颜色字符串
+ * @param  {Number} begin 开始位置
+ * @param  {Number} len   长度
+ * @return {String} r     截取后的字符串
+ */
+print.fn.substr(str, begin, len)
+```
+
+## print.fn.splitStr(str, maxLen)
+```
+/**
+ * 切割文字为数组
+ * @param  {String} str    字符
+ * @param  {Number} maxLen 最大长度
+ * @return {Array}  arr    切割结果
+ */
+print.fn.splitStr(str, maxLen)
+```
+
+## print.fn.hideProtocol(str)
+```
+/**
+ * 去掉 url 上的 https or http
+ * @param  {String} str
+ * @return {String} 去掉后的字符串
+ */
+print.fn.hideProtocol(str)
 ```
