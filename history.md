@@ -1,4 +1,10 @@
 # 版本记录
+## 0.5.1 (2019-01-31)
+* [ADD] 新增 `print.log.init({ mode1 })` logLevel 1 配置
+* [ADD] 新增 `print.log.init({ mode1.abridgeIgnores })` logLevel 1 配置
+* [ADD] 新增 `print.log.init({ mode1.ignoreTypes })` logLevel 1 配置
+* [DEL] 去掉 `print.log.init({ abridgeIgnores })` `abridgeIgnores` 变量 logLevel = 1 时 log 折叠的 排除名单
+
 ## 0.5.0 (2019-01-30)
 * [ADD] 新增 `print.log.init({ abridgeIgnores })` `abridgeIgnores` 变量 logLevel = 1 时 log 折叠的 排除名单
 

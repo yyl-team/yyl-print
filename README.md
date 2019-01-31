@@ -20,12 +20,14 @@ print.borderBox(ctx, op);
 /**
  * log 初始化
  * @param  {Object} op 配置参数
- * @param  {Object} op.type              log 类型
- * @param  {Number} op.maxSize           标题最大字数限制
- * @param  {Number} op.silent            是否禁止自动打印
- * @param  {Number} op.logLevel          日志级别 0|1|2
- * @param  {Object} op.keyword           高亮关键字配置
- * @param  {Array}  op.abridgeIgnores    代码缩略的白名单
+ * @param  {Object} op.type                 log 类型
+ * @param  {Number} op.maxSize              标题最大字数限制
+ * @param  {Number} op.silent               是否禁止自动打印
+ * @param  {Number} op.logLevel             日志级别 0|1|2
+ * @param  {Object} op.keyword              高亮关键字配置
+ * @param  {Object} op.mode1                loglevel = 1 时的配置
+ * @param  {Array}  op.mode1.abridgeIgnores 在白名单内的 type 不会折叠, 默认值 ['success']
+ * @param  {Array}  op.mode1.ignoreTypes    不作输出的类型列表, 默认值 ['info']
  */
 print.log.init(op);
 ```
