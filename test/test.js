@@ -427,3 +427,29 @@ test('print.log.info()', () => {
     expect(r).toEqual(param.result);
   });
 });
+
+test('print.fn.cost', () => {
+  print.fn.cost.start();
+  print.fn.cost.end();
+  print.fn.cost.format();
+
+  expect(print.fn.cost.format(2000)).toEqual('2s');
+  expect(print.fn.cost.format(2100)).toEqual('2s 100ms');
+  expect(print.fn.cost.format(62100)).toEqual('1min 2s 100ms');
+});
+
+test('print.fn.timeFormat(d)', () => {
+  expect(print.fn.timeFormat('2018/10/1 12:00:00')).toEqual('12:00:00');
+});
+
+test('print.fn.hideProtocol(url)', () => {
+  const testMap = {
+    'https://www.yy.com': '//www.yy.com',
+    'http://www.yy.com': '//www.yy.com',
+    'http://www.yy.com?prototype=http': '//www.yy.com?prototype=http'
+  };
+
+  Object.keys(testMap).forEach((key) => {
+    expect(print.fn.hideProtocol(key)).toEqual(testMap[key]);
+  });
+});

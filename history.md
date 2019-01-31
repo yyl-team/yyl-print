@@ -1,4 +1,23 @@
 # 版本记录
+## 0.5.2 (2019-01-31)
+* [ADD] 补全 `print.fn` 方法
+* [ADD] 新增 `print.fn.cost.start()` 方法
+* [ADD] 新增 `print.fn.cost.end()` 方法
+* [ADD] 新增 `print.fn.cost.format()` 方法
+* [ADD] 新增 `print.fn.timeFormat()` 方法
+* [ADD] 新增 `print.fn.hideProtocol()` 方法
+* [ADD] 新增 `print.fn.replaceKeyword()` 方法
+* [ADD] 新增 `print.fn.formatUrl()` 方法
+* [ADD] 新增 `print.fn.isArray()` 方法
+* [ADD] 新增 `print.fn.buildChar()` 方法
+* [ADD] 新增 `print.fn.makeSpace()` 方法
+* [ADD] 新增 `print.fn.decolor()` 方法
+* [ADD] 新增 `print.fn.strAlign()` 方法
+* [ADD] 新增 `print.fn.getStrSize()` 方法
+* [ADD] 新增 `print.fn.substr()` 方法
+* [ADD] 新增 `print.fn.splitStr()` 方法
+* [ADD] 新增 `print.fn.splitStr()` 方法
+
 ## 0.5.1 (2019-01-31)
 * [ADD] 新增 `print.log.init({ mode1 })` logLevel 1 配置
 * [ADD] 新增 `print.log.init({ mode1.abridgeIgnores })` logLevel 1 配置
