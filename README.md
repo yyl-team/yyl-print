@@ -28,6 +28,8 @@ print.borderBox(ctx, op);
  * @param  {Object} op.mode1                loglevel = 1 时的配置
  * @param  {Array}  op.mode1.abridgeIgnores 在白名单内的 type 不会折叠, 默认值 ['success']
  * @param  {Array}  op.mode1.ignoreTypes    不作输出的类型列表, 默认值 ['info']
+ * @param  {Array}  op.mode0                loglevel = 0 时的配置
+ * @param  {Array}  op.mode0.allowTypes     允许打印的类型配置
  */
 print.log.init(op);
 ```

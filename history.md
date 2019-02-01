@@ -1,4 +1,8 @@
 # 版本记录
+## 0.6.1 (2019-02-01)
+* [ADD] 新增 `print.log.init({ mode0 })` logLevel 0 配置
+* [ADD] 新增 `print.log.init({ mode0.allowTypes })` logLevel 0 配置
+
 ## 0.6.0 (2019-02-01)
 * [ADD] 新增 `print.fn.strWrap()` 方法
 * [ADD] 新增 `print.log.info()` 对 error 对象， object 对象的输出支持
