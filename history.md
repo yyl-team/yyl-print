@@ -1,4 +1,7 @@
 # 版本记录
+## 0.6.2 (2019-02-01)
+* [FIX] 修复 `print.log.info()` 当 当前行 有文字时， 显示不正确问题
+
 ## 0.6.1 (2019-02-01)
 * [ADD] 新增 `print.log.init({ mode0 })` logLevel 0 配置
 * [ADD] 新增 `print.log.init({ mode0.allowTypes })` logLevel 0 配置
