@@ -294,3 +294,25 @@ print.fn.splitStr(str, maxLen)
  */
 print.fn.hideProtocol(str)
 ```
+
+## print.fn.type(ctx)
+```
+/**
+ * 类型判断
+ * @param  {String} ctx  需要判断的对象
+ * @return {String} type 类型
+ */
+print.fn.type(ctx)
+```
+
+## print.fn.strWrap(str, len)
+```
+/**
+ * 文字换行
+ * @param  {String} str    待处理文案
+ * @param  {Number} len    每行最大文字数
+ * @param  {Number} indent 第二行 跳格数， 默认 0
+ * @return {Array}  r      处理后的 文字 数组
+ */
+print.fn.strWrap(str, len, indent)
+```

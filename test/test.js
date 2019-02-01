@@ -419,6 +419,16 @@ test('print.log.info()', () => {
       `${chalk.white.bgCyan('      ')} ${chalk.red('34567890')}`,
       `${chalk.white.bgCyan('      ')} hello`
     ]
+  }, {
+    argv: [
+      { a: 1, b: 2 }
+    ],
+    result: [
+      `${chalk.white.bgCyan(' TEST ')} {`,
+      `${chalk.white.bgCyan('      ')}   "a": 1,`,
+      `${chalk.white.bgCyan('      ')}   "b": 2`,
+      `${chalk.white.bgCyan('      ')} }`
+    ]
   }];
 
   checkMap.forEach((param) => {
@@ -451,5 +461,66 @@ test('print.fn.hideProtocol(url)', () => {
 
   Object.keys(testMap).forEach((key) => {
     expect(print.fn.hideProtocol(key)).toEqual(testMap[key]);
+  });
+});
+
+test('print.fn.type(ctx)', () => {
+  expect(print.fn.type([])).toEqual('array');
+  expect(print.fn.type({})).toEqual('object');
+  expect(print.fn.type(1)).toEqual('number');
+  expect(print.fn.type('a')).toEqual('string');
+  expect(print.fn.type(new Error(123))).toEqual('error');
+});
+
+test('print.fn.strWrap(str, size, indent)', () => {
+  const checkingMap = [{
+    argu: [
+      '01234567890123456789',
+      10
+    ],
+    result: [
+      '0123456789',
+      '0123456789'
+    ]
+  }, {
+    argu: [
+      '01234567890123456789',
+      10,
+      2
+    ],
+    result: [
+      '0123456789',
+      '  01234567',
+      '  89'
+    ]
+  }, {
+    argu: [
+      '0123456789012\r\n    34567890123456789',
+      10,
+      2
+    ],
+    result: [
+      '0123456789',
+      '  012',
+      '  34567890',
+      '  12345678',
+      '  9'
+    ]
+  }, {
+    argu: [
+      '0123456789012\r\n    34567890123456789',
+      10
+    ],
+    result: [
+      '0123456789',
+      '012',
+      '    345678',
+      '9012345678',
+      '9'
+    ]
+
+  }];
+  checkingMap.forEach((item) => {
+    expect(print.fn.strWrap(...item.argu)).toEqual(item.result);
   });
 });

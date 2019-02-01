@@ -1,4 +1,8 @@
 # 版本记录
+## 0.6.0 (2019-02-01)
+* [ADD] 新增 `print.fn.strWrap()` 方法
+* [ADD] 新增 `print.log.info()` 对 error 对象， object 对象的输出支持
+
 ## 0.5.2 (2019-01-31)
 * [ADD] 补全 `print.fn` 方法
 * [ADD] 新增 `print.fn.cost.start()` 方法
