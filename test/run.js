@@ -1,8 +1,7 @@
 const print = require('../index.js');
 // const chalk = require('chalk');
 
-print.log.setLogLevel(0);
-
+process.stdout.write('666');
 print.log.info('666')
-print.log.success('777')
-print.log.error('888')
+print.log.info('777')
+print.log.success('888')
