@@ -1,4 +1,6 @@
 # 版本记录
+## 0.6.4 (2019-02-14)
+* [FIX] 修复 在 `docker` 环境下 bug
 ## 0.6.3 (2019-02-11)
 * [FIX] 修复 `print.log.init()` `mode1`, `mode0`, `logLevel` 设置不生效问题
 
