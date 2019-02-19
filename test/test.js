@@ -524,3 +524,23 @@ test('print.fn.strWrap(str, size, indent)', () => {
     expect(print.fn.strWrap(...item.argu)).toEqual(item.result);
   });
 });
+
+test('print.fn.dateFormat(d)', () => {
+  const checkingMap = [{
+    argu: ['2019-01-01'],
+    result: '2019-01-01 00:00:00'
+  }, {
+    argu: [new Date('2019-01-01 00:00:00')],
+    result: '2019-01-01 00:00:00'
+  }, {
+    argu: ['2019/01/01'],
+    result: '2019-01-01 00:00:00'
+  }, {
+    argu: ['2019/01/01 01:02:03'],
+    result: '2019-01-01 01:02:03'
+  }];
+
+  checkingMap.forEach((item) => {
+    expect(print.fn.dateFormat(...item.argu)).toEqual(item.result);
+  });
+});
