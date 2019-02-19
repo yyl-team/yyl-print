@@ -318,3 +318,13 @@ print.fn.type(ctx)
  */
 print.fn.strWrap(str, len, indent)
 ```
+
+## print.fn.dateFormat(t)
+```
+/**
+ * 将传入时间|当前时间格式化成 `2019-01-01 00:00:00` 的形式
+ * @param  {undefined|Date} 传入时间
+ * @return {String}         格式化后字符串
+ */
+print.fn.timeFormat(d);
+```
