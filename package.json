@@ -1,6 +1,6 @@
 {
   "name": "yyl-print",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "cmd print lib for yyl",
   "main": "index.js",
   "engines": {
@@ -28,5 +28,7 @@
     "jest": "^23.6.0",
     "yyl-fs": "^0.1.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "chalk": "^2.4.2"
+  }
 }
