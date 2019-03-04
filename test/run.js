@@ -3,7 +3,7 @@ const chalk = require('chalk');
 print.log.init({
   logLevel: 1,
   mode1: {
-    ignoreTypes: []
+    abridgeIgnores: ['success', 'warn']
   }
 });
 print.log.info([
@@ -17,4 +17,9 @@ print.log.info([
   chalk.red(1234567890)
 ].join(''));
 print.log.info('777');
+print.log.warn('111');
+print.log.warn('222');
+print.log.warn('333');
+print.log.warn('444');
 print.log.success('888');
+print.log.success('999');
