@@ -1,4 +1,8 @@
 # 版本记录
+## 0.7.2 (2019-03-04)
+* [EDIT] 调整 `print.log.init(config)` 中 `config.mode1.abridgeIgnores` 默认参数为 `['success', 'error', 'warn']`
+* [EDIT] 调整 `print.log.update` 默认色
+
 ## 0.7.1 (2019-02-20)
 * [FIX] 添加 `chalk` 依赖
 
