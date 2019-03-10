@@ -421,6 +421,25 @@ test('print.log.info()', () => {
     ]
   }, {
     argv: [
+      [
+        1234567890,
+        1234567890,
+        1234567890,
+        1234567890,
+        1234567890,
+        1234567890,
+        1234567890,
+        chalk.red.bold(1234567890)
+      ].join(''),
+      'hello'
+    ],
+    result: [
+      `${chalk.white.bgCyan(' TEST ')} 1234567890123456789012345678901234567890123456789012345678901234567890${chalk.red.bold('12')}`,
+      `${chalk.white.bgCyan('      ')} ${chalk.red.bold('34567890')}`,
+      `${chalk.white.bgCyan('      ')} hello`
+    ]
+  }, {
+    argv: [
       { a: 1, b: 2 }
     ],
     result: [

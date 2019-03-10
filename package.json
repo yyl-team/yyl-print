@@ -1,6 +1,6 @@
 {
   "name": "yyl-print",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "cmd print lib for yyl",
   "main": "index.js",
   "engines": {
