@@ -1,10 +1,15 @@
-const print = require('../index.js');
+const print = require('../lib/print');
 const path = require('path');
 const fs = require('fs');
 const extFs = require('yyl-fs');
 const chalk = require('chalk');
 
 jest.setTimeout(30000);
+
+if (process.stdout.columns !== 80) {
+  throw '请将cmd 窗口设置为 80 宽度再进行测试';
+}
+
 const FRAG_PATH = path.join(__dirname, './__frag');
 const fn = {
   frag: {
@@ -29,6 +34,7 @@ const fn = {
     fs.writeFileSync(iPath, '');
   }
 };
+
 
 test('print.help(op)', () => {
   const checkMap = [{

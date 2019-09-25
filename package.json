@@ -1,8 +1,9 @@
 {
   "name": "yyl-print",
-  "version": "0.7.3",
+  "version": "0.7.4",
   "description": "cmd print lib for yyl",
-  "main": "index.js",
+  "main": "lib/print.js",
+  "types": "lib/print.d.ts",
   "engines": {
     "node": ">= 8.0.0"
   },
