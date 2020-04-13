@@ -1,4 +1,4 @@
-interface IFn {
+interface Fn {
   /**
    * 文字换行处理
    * @param  str    原始字符串
@@ -118,8 +118,8 @@ interface IFn {
   }
 }
 
-interface IPrint {
-  fn: IFn
+interface Print {
+  fn: Fn
   /**
    * 清除当前 终端屏幕
    */
@@ -174,12 +174,12 @@ interface IPrint {
      * 设置 log 等级
      * @param logLevel log 等级 0|1|2
      */
-    setLogLevel(logLevel: ELogLevel): void
+    setLogLevel(logLevel: LogLevel): void
     /**
      * log 初始化
      * @param op 选项
      */
-    init(op: ILogInitOptions): ILogInitOptions
+    init(op: LogInitOptions): LogInitOptions
     /**
      * success 类 log 打印
      * @param ctx 打印内容 any | any[]
@@ -233,17 +233,17 @@ interface IPrint {
   }
 }
 
-interface ILogInitOptions {
+interface LogInitOptions {
   type?: {
     [type: string]: {
       name: string
-      color: TColor 
-      bgColor?: TColor
+      color: Color 
+      bgColor?: Color
     }
   },
   maxSize?: number,
   silent?: boolean,
-  logLevel?: ELogLevel,
+  logLevel?: LogLevel,
   keyword?: {
     [keyword: string]: string
   },
@@ -261,9 +261,9 @@ interface ILogInitOptions {
   }
 }
 
-type TColor = () => string | string
+type Color = () => string | string
 
-enum ELogLevel {
+enum LogLevel {
   SILENT = 0,
   NORMAL = 1,
   DETAIL = 2
@@ -275,5 +275,5 @@ enum EAlignType {
   RIGHT = 'right'
 }
 
-declare const print: IPrint
+declare const print: Print
 export = print
