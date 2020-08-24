@@ -1,3 +1,5 @@
+import { start, finished } from "./lib/progress"
+
 interface Fn {
   /**
    * 文字换行处理
@@ -118,6 +120,37 @@ interface Fn {
   }
 }
 
+interface ProgressOption {
+  /** 刷新间隔 */
+  interval?: number
+  /** log 等级 */
+  logLevel?: number
+  /** 静默模式 */
+  silent?: boolean
+  icon?: {
+    progress?: {
+      chats: string[],
+      color: (...args: any) => any
+    },
+    finished?: {
+      chats: string[]
+      color: (...args: any) => any
+    }
+  }
+}
+
+/** 进度模块 */
+interface Progress {
+  /** 初始化 */
+  init(op?:ProgressOption): void
+  /** 开始执行 */
+  start(...args: any[]): void
+  /** 日志打印 */
+  log(...args: any[]): void
+  /** 执行完成 */
+  finished(...args: any[]): void
+}
+
 interface Print {
   fn: Fn
   /**
@@ -231,6 +264,7 @@ interface Print {
      */
     [type: string]: (ctx: any | any[]) => void
   }
+  progress: Progress
 }
 
 interface LogInitOptions {
