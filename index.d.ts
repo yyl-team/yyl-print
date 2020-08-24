@@ -1,4 +1,6 @@
-interface IFn {
+import { start, finished } from "./lib/progress"
+
+interface Fn {
   /**
    * 文字换行处理
    * @param  str    原始字符串
@@ -118,8 +120,39 @@ interface IFn {
   }
 }
 
-interface IPrint {
-  fn: IFn
+interface ProgressOption {
+  /** 刷新间隔 */
+  interval?: number
+  /** log 等级 */
+  logLevel?: number
+  /** 静默模式 */
+  silent?: boolean
+  icon?: {
+    progress?: {
+      chats: string[],
+      color: (...args: any) => any
+    },
+    finished?: {
+      chats: string[]
+      color: (...args: any) => any
+    }
+  }
+}
+
+/** 进度模块 */
+interface Progress {
+  /** 初始化 */
+  init(op?:ProgressOption): void
+  /** 开始执行 */
+  start(...args: any[]): void
+  /** 日志打印 */
+  log(...args: any[]): void
+  /** 执行完成 */
+  finished(...args: any[]): void
+}
+
+interface Print {
+  fn: Fn
   /**
    * 清除当前 终端屏幕
    */
@@ -174,12 +207,12 @@ interface IPrint {
      * 设置 log 等级
      * @param logLevel log 等级 0|1|2
      */
-    setLogLevel(logLevel: ELogLevel): void
+    setLogLevel(logLevel: LogLevel): void
     /**
      * log 初始化
      * @param op 选项
      */
-    init(op: ILogInitOptions): ILogInitOptions
+    init(op: LogInitOptions): LogInitOptions
     /**
      * success 类 log 打印
      * @param ctx 打印内容 any | any[]
@@ -231,19 +264,20 @@ interface IPrint {
      */
     [type: string]: (ctx: any | any[]) => void
   }
+  progress: Progress
 }
 
-interface ILogInitOptions {
+interface LogInitOptions {
   type?: {
     [type: string]: {
       name: string
-      color: TColor 
-      bgColor?: TColor
+      color: Color 
+      bgColor?: Color
     }
   },
   maxSize?: number,
   silent?: boolean,
-  logLevel?: ELogLevel,
+  logLevel?: LogLevel,
   keyword?: {
     [keyword: string]: string
   },
@@ -261,9 +295,9 @@ interface ILogInitOptions {
   }
 }
 
-type TColor = () => string | string
+type Color = () => string | string
 
-enum ELogLevel {
+enum LogLevel {
   SILENT = 0,
   NORMAL = 1,
   DETAIL = 2
@@ -275,5 +309,5 @@ enum EAlignType {
   RIGHT = 'right'
 }
 
-declare const print: IPrint
+declare const print: Print
 export = print
