@@ -124,7 +124,7 @@ interface ProgressOption {
   /** 刷新间隔 */
   interval?: number
   /** log 等级 */
-  logLevel?: number
+  logLevel?: LogLevel
   /** 静默模式 */
   silent?: boolean
   icon?: {
@@ -133,6 +133,14 @@ interface ProgressOption {
       color: (...args: any) => any
     },
     finished?: {
+      chats: string[]
+      color: (...args: any) => any
+    },
+    warn?: {
+      chats: string[]
+      color: (...args: any) => any
+    },
+    error?: {
       chats: string[]
       color: (...args: any) => any
     }
@@ -149,6 +157,10 @@ interface Progress {
   log(...args: any[]): void
   /** 执行完成 */
   finished(...args: any[]): void
+  /** 执行完成，但warning */
+  warn(...args: any[]): void
+  /** 执行完成，但出错 */
+  error(...args: any[]): void
 }
 
 interface Print {
@@ -213,6 +225,9 @@ interface Print {
      * @param op 选项
      */
     init(op: LogInitOptions): LogInitOptions
+
+    /** 简洁模式 */
+    lite(): void,
     /**
      * success 类 log 打印
      * @param ctx 打印内容 any | any[]
