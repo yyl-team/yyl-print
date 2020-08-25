@@ -1,6 +1,16 @@
-const { progress } = require('../')
+const { progress, log } = require('../')
+log.lite()
+log.info('123')
+log.warn('123')
+log.error('123')
+log.success('123')
+log.del('123')
+log.update('123')
+log.add('123')
+log.cmd('123')
+log.remove('123')
 progress.start('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
 
 setTimeout(() => {
-  progress.error('ok')
+  progress.warn('ok')
 }, 2000)
