@@ -19,9 +19,9 @@ test('print.fn.timeFormat(d)', () => {
 
 test('print.fn.hideProtocol(url)', () => {
   const testMap = {
-    'https://www.yy.com': '//www.yy.com',
-    'http://www.yy.com': '//www.yy.com',
-    'http://www.yy.com?prototype=http': '//www.yy.com?prototype=http'
+    'https://www.testhost.com': '//www.testhost.com',
+    'http://www.testhost.com': '//www.testhost.com',
+    'http://www.testhost.com?prototype=http': '//www.testhost.com?prototype=http'
   }
 
   Object.keys(testMap).forEach((key) => {
