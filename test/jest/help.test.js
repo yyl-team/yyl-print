@@ -22,7 +22,7 @@ test('print.help(op)', () => {
       },
       result: [
         '',
-        '  Usage: yyl-print <command>',
+        '  Usage: yyl-print <options>',
         '',
         '  Options:',
         '    -v, --version  show version',
